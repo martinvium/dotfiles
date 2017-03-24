@@ -1,0 +1,14 @@
+[core]
+	excludesfile = <%= ENV['HOME'] %>/.gitignore_global
+	editor = vim
+[user]
+  name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
+	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[push]
+	default = current
+[alias]
+	uncommit = reset --soft HEAD^
+	pr = pull-request
+	up = pull --rebase --autostash
+[commit]
+	template = <%= ENV['HOME'] %>/.stCommitMsg
