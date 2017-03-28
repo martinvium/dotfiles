@@ -1,4 +1,5 @@
 source ~/.bashrc
+source ~/.bash_secrets
 
 # RBENV
 eval "$(rbenv init -)"
@@ -21,3 +22,6 @@ fi
 # Go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/Projects/go
+
+# FZF Search
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
