@@ -24,4 +24,4 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/Projects/go
 
 # FZF Search
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -g ''"
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"

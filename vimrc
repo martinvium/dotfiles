@@ -81,7 +81,8 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 
   autocmd FileType go map <buffer> :A :GoAlternate
-  autocmd FileType go nnoremap <leader>t :GoTest<cr>
+  autocmd FileType go nnoremap <leader>T :GoTest<cr>
+  autocmd FileType go nnoremap <leader>t :GoTestFunc<cr>
 augroup END
 
 color Molokai
@@ -241,16 +242,15 @@ xnoremap <leader>p ciw<C-r>0
 
 
 " ZFZ SETTINGS:
-
 set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <leader>. :BTags<cr>
+nnoremap <leader>, :Tags<cr>
 
-" Sane Ignore For ctrlp
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp\|vendor$',
-"   \ 'file': '\.exe$\|\.so$\|\.dat$\|\.meta$'
-"   \ }
+" [Buffers] Jump to the existing window if possible
+" let g:fzf_buffers_jump = 1
+
 
 " TAG JUMPING:
 
