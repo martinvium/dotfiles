@@ -25,3 +25,6 @@ export GOPATH=$HOME/Projects/go
 
 # FZF Search
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
+
+# Yarn package manager (js)
+export PATH="$PATH:`yarn global bin`"
