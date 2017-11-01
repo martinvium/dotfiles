@@ -5,14 +5,15 @@ brew 'bash-completion'
 brew 'mercurial'
 
 # Vim and vim search/fuzzies
-brew 'vim'
+brew 'vim', args: ['--with-lua']
 brew 'ctags'
-brew 'zfz'
+brew 'fzf'
 brew 'the_silver_searcher'
 
 # VM stuff
-brew 'docker'
-brew 'docker-machine'
+# brew 'docker'
+# brew 'docker-machine'
+# brew 'docker-compose'
 
 # Programming languages
 brew 'go'
@@ -20,11 +21,4 @@ brew 'govendor'
 brew 'rbenv'
 
 # To build v8?
-brew 'v8-315'
-
-# To build capybara-webkit
-brew 'qt@5.5'
-
-# To build xmldsig
-brew 'xerces-c'
-brew 'xml-security-c'
+#brew 'v8-315'
