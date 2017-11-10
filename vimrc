@@ -89,6 +89,8 @@ augroup vimrcEx
   autocmd FileType go map <buffer> :A :GoAlternate
   autocmd FileType go nnoremap <leader>T :GoTest<cr>
   autocmd FileType go nnoremap <leader>t :GoTestFunc<cr>
+
+  autocmd FileType mail setlocal fo+=aw
 augroup END
 
 " OmniSharp
@@ -298,7 +300,7 @@ endif
 " CUSTOM LEADERS AND SHORTCUTS:
 
 " Silver searcher
-nnoremap <leader>a :Ag!<space>
+nnoremap <leader>a :Ag! -Q<space>
 nnoremap <leader>A :AgFromSearch<cr>
 
 " Go back to last used buffer
@@ -308,10 +310,10 @@ nnoremap <leader>b :b#<cr>
 nnoremap <leader>r :!rubocop %<cr>
 
 " Run rspec on file
-nnoremap <leader>t :!bundle exec rspec %<cr>
+nnoremap <leader>t :!bin/rspec %<cr>
 
 " Run ci task
-nnoremap <leader>T :!rake ci<cr>
+nnoremap <leader>T :!bin/rspec<cr>
 
 " Init search replace
 nnoremap <leader>s :%s/
@@ -353,7 +355,7 @@ nnoremap <leader>, :Tags<cr>
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R .
+command! MakeTags !ctags -R --exclude=.git --exclude=node_modules .
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -414,7 +416,6 @@ let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
-" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 "}}}
 
