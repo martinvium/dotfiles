@@ -6,14 +6,11 @@ eval "$(rbenv init -)"
 
 # Git branch in prompt.
 parse_git_branch() {
+  if [ -d ".git" ]; then
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  fi
 }
 export PS1="\u@\h:\w\[\033[32m\]\$(parse_git_branch)\[\033[00m\]$ "
-
-# Bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
