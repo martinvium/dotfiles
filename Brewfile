@@ -22,3 +22,5 @@ brew 'rbenv'
 
 # To build v8?
 #brew 'v8-315'
+
+brew 'neomutt/homebrew-neomutt/neomutt'

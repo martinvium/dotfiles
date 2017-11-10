@@ -1,0 +1,5 @@
+application/pdf; open %s
+text/html; open %s
+image/*; open %s
+application/*; open `pwd %s`
+
