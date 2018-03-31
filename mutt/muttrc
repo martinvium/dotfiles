@@ -1,8 +1,8 @@
 bind index g noop
 bind index y noop
 
-source ~/.mutt/account.gmail.com
-source ~/.mutt/colorrc
+source ~/.mutt/account.protonmail.com
+source ~/.mutt/colors/colorrc
 source ~/.mutt/contacts/aliasrc
 # source ~/.mutt/contacts/autoaliasrc
 
@@ -25,7 +25,7 @@ alternative_order text/plain text/enriched text/html
 mono bold bold
 mono underline underline
 mono indicator reverse
-color index yellow default '.*'
+color index green default '.*'
 color index_author red default '.*'
 color index_number blue default
 color index_subject cyan default '.s'
@@ -45,10 +45,10 @@ bind index F search
 bind index R group-reply
 
 # Folder hooks
-folder-hook 'account.gmail.com' 'source ~/.mutt/account.gmail.com'
+folder-hook 'account.protonmail.com' 'source ~/.mutt/account.protonmail.com'
 folder-hook 'account.work.com' 'source ~/.mutt/account.work.com'
 
 # Macros for switching accounts
-macro index X '<sync-mailbox><enter-command>source ~/.mutt/account.gmail.com<enter><change-folder>!<enter>'
+macro index X '<sync-mailbox><enter-command>source ~/.mutt/account.protonmail.com<enter><change-folder>!<enter>'
 macro index K '<sync-mailbox><enter-command>source ~/.mutt/account.work.com<enter><change-folder>!<enter>'
 
