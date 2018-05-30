@@ -48,13 +48,17 @@ Plugin 'FooSoft/vim-argwrap'
 " Golang
 Plugin 'fatih/vim-go'
 " Dart
-Plugin 'dart-lang/dart-vim-plugin'
+" Plugin 'dart-lang/dart-vim-plugin'
 " CSharp
-Plugin 'OmniSharp/omnisharp-vim'
+" Plugin 'OmniSharp/omnisharp-vim'
 " Auto-start OmniSharp server
-Plugin 'tpope/vim-dispatch'
+" Plugin 'tpope/vim-dispatch'
 " Syntax for OmniSharp
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
+" HardMode
+Plugin 'wikitopian/hardmode'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -190,6 +194,7 @@ set relativenumber    " Show line numbers
 set number            " Show line numbers
 set ruler             " Show line and column number
 set colorcolumn=80,100
+set re=1              " Disable new regex engine, slows done rspec files
 syntax enable         " Turn on syntax highlighting allowing local overrides
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -309,6 +314,9 @@ nnoremap <leader>b :b#<cr>
 " Run rubocop on file
 nnoremap <leader>r :!rubocop %<cr>
 
+" Rename
+nnoremap <leader>R :!mv %:p %:p:h/
+
 " Run rspec on file
 nnoremap <leader>t :!bin/rspec %<cr>
 
@@ -418,6 +426,35 @@ let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
 "}}}
+
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()
 
 " Project vimrc support
 if filereadable('.local.vim')

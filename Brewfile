@@ -24,3 +24,4 @@ brew 'rbenv'
 #brew 'v8-315'
 
 brew 'neomutt/homebrew-neomutt/neomutt'
+brew 'lastpass-cli --with-pinentry'
