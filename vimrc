@@ -25,6 +25,7 @@ Plugin 'tpope/vim-fugitive'
 " Vim Rbenv
 Plugin 'tpope/vim-rbenv'
 " Auto-completion
+Plugin 'lifepillar/vim-mucomplete'
 " JSON Syntax
 Plugin 'elzr/vim-json'
 " Fuzzy searh
@@ -245,6 +246,16 @@ nnoremap <leader>j :%!python -m json.tool
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
 " xnoremap <leader>p "_dP
 xnoremap <leader>p ciw<C-r>0
+
+
+" AUTO COMPLETION:
+
+set completeopt+=menuone
+set completeopt+=noselect
+set completeopt+=noinsert
+set shortmess+=c
+set belloff+=ctrlg
+let g:mucomplete#enable_auto_at_startup = 1
 
 
 " ZFZ SETTINGS:
