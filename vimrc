@@ -272,7 +272,7 @@ nnoremap <leader>, :Tags<cr>
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R --exclude=.git --exclude=node_modules .
+command! MakeTags !ctags -R --exclude=.git --exclude=node_modules --exclude=vendor .
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
