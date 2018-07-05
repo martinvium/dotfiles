@@ -47,6 +47,10 @@ Plugin 'fatih/vim-go'
 " Javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+" " Tests & Auto-start OmniSharp server
+Plugin 'tpope/vim-dispatch'
+" Generic test helper
+Plugin 'janko-m/vim-test'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -216,11 +220,11 @@ nnoremap <leader>r :!rubocop %<cr>
 " Rename
 nnoremap <leader>R :!mv %:p %:p:h/
 
-" Run rspec on file
-nnoremap <leader>t :!bin/rspec %<cr>
+" Run current rspec
+nnoremap <leader>t :TestFile<cr>
 
-" Run ci task
-nnoremap <leader>T :!bin/rspec<cr>
+" Run all rspecs
+nnoremap <leader>T :TestSuite<cr>
 
 " Init search replace
 nnoremap <leader>s :%s/
@@ -247,6 +251,12 @@ nnoremap <leader>j :%!python -m json.tool
 " xnoremap <leader>p "_dP
 xnoremap <leader>p ciw<C-r>0
 
+
+" VIM TESTING:
+
+" make test commands execute using dispatch.vim
+" let test#strategy = "dispatch"
+let test#ruby#rspec#executable = './bin/rspec'
 
 " AUTO COMPLETION:
 
