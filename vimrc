@@ -1,65 +1,58 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-"{{{ - Bundles
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  " Plug 'thinca/vim-textobj-between'
+  " Vim Ruby
+  Plug 'vim-ruby/vim-ruby'
+  " Vim Rails
+  Plug 'tpope/vim-rails'
+  " Adds end, after if, def etc.
+  Plug 'tpope/vim-endwise'
+  " Git wrapper
+  Plug 'tpope/vim-fugitive'
+  " Vim Rbenv
+  Plug 'tpope/vim-rbenv'
+  " Auto-completion
+  Plug 'lifepillar/vim-mucomplete'
+  " JSON Syntax
+  Plug 'elzr/vim-json'
+  " Fuzzy searh
+  Plug 'junegunn/fzf.vim'
+  " indent guides
+  Plug 'nathanaelkane/vim-indent-guides'
+  " More colorschemes
+  Plug 'flazz/vim-colorschemes'
+  " Search
+  Plug 'rking/ag.vim'
+  " PHP support?
+  Plug 'StanAngeloff/php.vim'
+  " Open vim on the right line from Unity
+  Plug 'bogado/file-line'
+  " When you spend too much time formatting method calls
+  Plug 'FooSoft/vim-argwrap'
+  " Golang
+  Plug 'fatih/vim-go'
+  " Javascript
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  Plug 'prettier/vim-prettier'
+  " Tests & Auto-start OmniSharp server
+  Plug 'tpope/vim-dispatch'
+  " Generic test helper
+  Plug 'janko-m/vim-test'
+  " CSharp
+  Plug 'OmniSharp/omnisharp-vim'
+  " Syntax for OmniSharp
+  Plug 'vim-syntastic/syntastic'
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" Repeatable
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-" Plugin 'thinca/vim-textobj-between'
-" Vim Ruby
-Plugin 'vim-ruby/vim-ruby'
-" Vim Rails
-Plugin 'tpope/vim-rails'
-" Adds end, after if, def etc.
-Plugin 'tpope/vim-endwise'
-" Git wrapper
-Plugin 'tpope/vim-fugitive'
-" Vim Rbenv
-Plugin 'tpope/vim-rbenv'
-" Auto-completion
-Plugin 'lifepillar/vim-mucomplete'
-" JSON Syntax
-Plugin 'elzr/vim-json'
-" Fuzzy searh
-Plugin 'junegunn/fzf.vim'
-" indent guides
-Plugin 'nathanaelkane/vim-indent-guides'
-" More colorschemes
-Plugin 'flazz/vim-colorschemes'
-" Search
-Plugin 'rking/ag.vim'
-" PHP support?
-Plugin 'StanAngeloff/php.vim'
-" Open vim on the right line from Unity
-Plugin 'bogado/file-line'
-" When you spend too much time formatting method calls
-Plugin 'FooSoft/vim-argwrap'
-" Golang
-Plugin 'fatih/vim-go'
-" Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'prettier/vim-prettier'
-" Tests & Auto-start OmniSharp server
-Plugin 'tpope/vim-dispatch'
-" Generic test helper
-Plugin 'janko-m/vim-test'
-" CSharp
-Plugin 'OmniSharp/omnisharp-vim'
-" Syntax for OmniSharp
-Plugin 'vim-syntastic/syntastic'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-"}}}
+" filetype plugin indent on    " required
 
 "{{{ General Settings
 let mapleader = ","
