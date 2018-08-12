@@ -47,6 +47,7 @@ Plugin 'fatih/vim-go'
 " Javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'prettier/vim-prettier'
 " Tests & Auto-start OmniSharp server
 Plugin 'tpope/vim-dispatch'
 " Generic test helper
