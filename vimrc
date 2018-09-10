@@ -438,6 +438,10 @@ endfunction
 command! PrettyXML call DoPrettyXML()
 
 
+" OVERWRITE COLORSCHEME:
+
+highlight LineNr guifg=#777777
+
 " Project vimrc support
 if filereadable('.local.vim')
   source .local.vim
