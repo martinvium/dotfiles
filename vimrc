@@ -50,6 +50,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'OmniSharp/omnisharp-vim'
   " Syntax for OmniSharp
   Plug 'vim-syntastic/syntastic'
+  " Elm
+  Plug 'elmcast/elm-vim'
 call plug#end()
 
 " filetype plugin indent on    " required
@@ -65,6 +67,7 @@ augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
+  autocmd FileType markdown setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -391,12 +394,6 @@ augroup phpSyntaxOverride
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
 
-" For conceal markers.
-" Really no clue what this does.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
 
 " FILE BROWSING:
 
@@ -407,6 +404,9 @@ let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
 "}}}
+
+
+" FORMAT XML:
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
@@ -436,6 +436,7 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
+
 
 " Project vimrc support
 if filereadable('.local.vim')
