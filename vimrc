@@ -263,9 +263,6 @@ nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <leader>. :BTags<cr>
 nnoremap <leader>, :Tags<cr>
 
-" [Buffers] Jump to the existing window if possible
-" let g:fzf_buffers_jump = 1
-
 
 " TAG JUMPING:
 
@@ -274,19 +271,6 @@ command! MakeTags !ctags -R --exclude=.git --exclude=node_modules --exclude=*.er
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-
-
-" PHP VIM:
-
-function! PhpSyntaxOverride()
-  hi! def link phpDocTags  phpDefine
-  hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
 
 
 " FILE BROWSING:
