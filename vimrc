@@ -1,5 +1,4 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
@@ -45,8 +44,6 @@ call plug#begin('~/.vim/plugged')
   " Generic test helper
   Plug 'janko-m/vim-test'
 call plug#end()
-
-" filetype plugin indent on    " required
 
 "{{{ General Settings
 let mapleader = ","
@@ -123,7 +120,7 @@ set listchars+=precedes:<         " The character to show in the last column whe
                                   " off and the line continues beyond the left of the screen
 
 " keep more context when scrolling off the end of a buffer
-set scrolloff=3
+set scrolloff=5
 
 "" Searching
 set hlsearch    " highlight matches
