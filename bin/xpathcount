@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+#
+require 'nokogiri'
+require 'pry'
+
+class CountXpathNodes
+  def initialize(source:, pattern:)
+    @source = source
+    @pattern = pattern
+  end
+
+  def run!
+    puts "     Count Filename"
+    files.each do |file|
+      puts '%10s %s' % [count(file), File.expand_path(file)]
+    end
+  end
+
+  private
+
+  attr_reader :source, :pattern
+
+  def count(file)
+    document = Nokogiri::XML(file.read)
+    document.xpath("count(#{pattern})").to_i
+  end
+
+  def files
+    Dir.glob(source).map { |filename| File.open(filename, 'r') }
+  end
+end
+
+CountXpathNodes.new(source: ARGV[0..-2], pattern: ARGV.last).run!
