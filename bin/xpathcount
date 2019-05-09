@@ -22,6 +22,7 @@ class CountXpathNodes
 
   def count(file)
     document = Nokogiri::XML(file.read)
+    document.remove_namespaces!
     document.xpath("count(#{pattern})").to_i
   end
 
