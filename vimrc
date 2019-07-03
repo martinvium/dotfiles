@@ -253,6 +253,7 @@ set completeopt+=noinsert
 set shortmess+=c
 set belloff+=ctrlg
 let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#chains = { 'default': [ 'c-p', 'omni', 'keyn', 'incl'] }
 
 
 " ZFZ SETTINGS:
