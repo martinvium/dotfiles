@@ -19,6 +19,7 @@ brew 'the_silver_searcher'
 brew 'go'
 brew 'govendor'
 brew 'rbenv'
+brew 'readline'
 
 # To build v8?
 #brew 'v8-315'
