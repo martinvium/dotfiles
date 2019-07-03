@@ -319,6 +319,15 @@ command! PrettyXML call DoPrettyXML()
 
 highlight LineNr guifg=#777777
 
+" TEMPLATES:
+
+au BufNewFile *_spec.rb r ~/.vim/skeleton.spec
+
+" PRETTIER:
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx Prettier
+
 " Project vimrc support
 if filereadable('.local.vim')
   source .local.vim
