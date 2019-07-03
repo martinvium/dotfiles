@@ -200,11 +200,12 @@ nnoremap <leader>A :AgFromSearch<cr>
 " Go back to last used buffer
 nnoremap <leader>b :b#<cr>
 
-" Run rubocop on file
-nnoremap <leader>r :!rubocop %<cr>
+" Run rubocop fix on file
+nnoremap <leader>w :!rubocop --safe-auto-correct --config=./.rubocop_config.yml % <bar> write<cr>
 
-" Rename
-nnoremap <leader>R :!mv %:p %:p:h/
+" Run rubocop fix on file
+nnoremap <leader>r :!rubocop --safe-auto-correct --config=./.rubocop_config.yml %<cr>
+nnoremap <leader>R :!rubocop<cr>
 
 " Run current rspec
 nnoremap <leader>t :TestFile<cr>
