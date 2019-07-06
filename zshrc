@@ -83,3 +83,7 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 # Editors
 export BUNDLER_EDITOR=vim
 export EDITOR=vim
+
+# Load plugins
+# antibody bundle < ~/.dotfiles/zsh_plugins.txt > ~/.zsh_plugins.sh
+source ~/.zsh_plugins.sh
