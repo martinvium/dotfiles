@@ -1,5 +1,5 @@
 source ~/.bashrc
-source ~/.bash_secrets
+source ~/.secrets
 
 # RBENV
 eval "$(rbenv init -)"
