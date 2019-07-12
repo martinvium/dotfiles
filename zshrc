@@ -1,12 +1,16 @@
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:~/bin:$PATH"
 
 # I prefer not to have autocompletion be case-insensitive, which is the default
 export CASE_SENSITIVE="true"
 
-# Use the Pure promt
-# (https://github.com/sindresorhus/pure)
-autoload -U promptinit; promptinit
-prompt pure
+# Prompt
+setopt prompt_subst
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+export PROMPT="%/\$(parse_git_branch)$ "
 
 # History
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
@@ -42,8 +46,6 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 # Other
-setopt prompt_subst
-
 source ~/.secrets
 
 # Applications
