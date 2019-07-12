@@ -10,7 +10,7 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PROMPT="%/\$(parse_git_branch)$ "
+export PROMPT="%~\$(parse_git_branch)$ "
 
 # History
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
