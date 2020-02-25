@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   " Git wrapper
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   " Vim Rbenv
   Plug 'tpope/vim-rbenv'
   " Auto-completion
@@ -43,6 +44,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-dispatch'
   " Generic test helper
   Plug 'janko-m/vim-test'
+  " Docker syntax highlighting
+  Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 "{{{ General Settings
@@ -128,6 +131,7 @@ set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
+set gdefault    " replace all occurances on lines by default
 
 " Don't make backups at all
 set nobackup
@@ -152,10 +156,10 @@ nnoremap k gk
 " Double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
-" Why?
+" Makes macros execute faster
 set lazyredraw
 
-set shell=bash
+set shell=/usr/local/bin/zsh
 
 "" Wild settings
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -205,7 +209,7 @@ nnoremap <leader>w :!rubocop --safe-auto-correct --config=./.rubocop_config.yml 
 
 " Run rubocop fix on file
 nnoremap <leader>r :!rubocop --safe-auto-correct --config=./.rubocop_config.yml %<cr>
-nnoremap <leader>R :!rubocop<cr>
+nnoremap <leader>R :!rubocop --parallel<cr>
 
 " Run current rspec
 nnoremap <leader>t :TestFile<cr>
@@ -238,12 +242,25 @@ nnoremap <leader>j :%!python -m json.tool
 " xnoremap <leader>p "_dP
 xnoremap <leader>p ciw<C-r>0
 
+" Run all rspecs
+nnoremap <leader>x :Commands<cr>
+
 
 " VIM TESTING:
 
 " make test commands execute using dispatch.vim
 " let test#strategy = "dispatch"
 let test#ruby#rspec#executable = './bin/rspec'
+
+
+let g:rails_projections = {
+      \   "app/controllers/*_controller.rb": {
+      \     "test": ["spec/requests/{}_controller_spec.rb"]
+      \   },
+      \   "spec/requests/*_controller_spec.rb": {
+      \     "alternate": ["app/controllers/{}_controller.rb"]
+      \   }
+      \ }
 
 " AUTO COMPLETION:
 
@@ -267,7 +284,7 @@ nnoremap <leader>, :Tags<cr>
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R --exclude=.git --exclude=node_modules --exclude=*.erb --exclude=*.js --exclude=*.jsx --exclude=vendor --exclude=*.html .
+command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules' --exclude='*.erb' --exclude='*.js' --exclude='*.jsx' --exclude='vendor' --exclude='*.html' .
 
 
 " FILE BROWSING:
@@ -327,6 +344,9 @@ au BufNewFile *_spec.rb r ~/.vim/skeleton.spec
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx Prettier
+
+" STANDARD RUBY
+command! StandardRubyFix cexpr system('standardrb --fix .')
 
 " Project vimrc support
 if filereadable('.local.vim')
