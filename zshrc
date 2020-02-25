@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:~/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # I prefer not to have autocompletion be case-insensitive, which is the default
 export CASE_SENSITIVE="true"
@@ -75,17 +75,27 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.in
 # Probably oracle?
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
+# doesn't work?
+export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
 # Oracle instantclient x64
 export OCI_DIR="/usr/local/oracle/instantclient_11_2"
 export SQLPATH="/usr/local/oracle/instantclient_11_2"
 export TNS_ADMIN="/usr/local/oracle/network/admin"
-export NLS_LANG="AMERICAN_AMERICA.UTF8"
+
 
 # Editors
 export BUNDLER_EDITOR=vim
 export EDITOR=vim
 
+# Project specific
+export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
+
 # Load plugins
 # antibody bundle < ~/.dotfiles/zsh_plugins.txt > ~/.zsh_plugins.sh
 source ~/.zsh_plugins.sh
+export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
