@@ -51,7 +51,7 @@ source ~/.secrets
 # Applications
 
 # Load Rbenv
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # I've installed zsh installed through Homebrew, so I add these
 # lines to make sure tab completion is properly configured
@@ -65,7 +65,7 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
 [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ] && source /usr/local/opt/fzf/shell/key-bindings.zsh
 
 # Yarn package manager (js)
-export PATH="$PATH:`yarn global bin`"
+# export PATH="$PATH:`yarn global bin`"
 
 # GCloud
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
@@ -92,10 +92,8 @@ export EDITOR=vim
 export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
 
 # Load plugins
-# antibody bundle < ~/.dotfiles/zsh_plugins.txt > ~/.zsh_plugins.sh
 source ~/.zsh_plugins.sh
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

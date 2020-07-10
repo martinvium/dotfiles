@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   " Git wrapper
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
+  " Plug 'tpope/vim-rhubarb'
   " Vim Rbenv
   Plug 'tpope/vim-rbenv'
   " Auto-completion
@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'prettier/vim-prettier'
   " Tests & Auto-start OmniSharp server
   Plug 'tpope/vim-dispatch'
+  Plug 'OmniSharp/omnisharp-vim'
   " Generic test helper
   Plug 'janko-m/vim-test'
   " Docker syntax highlighting
@@ -205,10 +206,11 @@ nnoremap <leader>A :AgFromSearch<cr>
 nnoremap <leader>b :b#<cr>
 
 " Run rubocop fix on file
-nnoremap <leader>w :!rubocop --safe-auto-correct --config=./.rubocop_config.yml % <bar> write<cr>
+nnoremap <leader>w :!rubocop -a --config=./.rubocop_config.yml % <bar> write<cr>
 
 " Run rubocop fix on file
-nnoremap <leader>r :!rubocop --safe-auto-correct --config=./.rubocop_config.yml %<cr>
+nnoremap <leader>r :!rubocop -a --config=./.rubocop_config.yml %<cr>
+" nnoremap <leader>r :!rubocop --safe-auto-correct %<cr>
 nnoremap <leader>R :!rubocop --parallel<cr>
 
 " Run current rspec
@@ -245,12 +247,23 @@ xnoremap <leader>p ciw<C-r>0
 " Run all rspecs
 nnoremap <leader>x :Commands<cr>
 
+" Next in quickfix
+nnoremap <leader>n :cn<cr>
+
+" Move lines up or down
+" https://vim.fandom.com/wiki/Moving_lines_up_or_down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " VIM TESTING:
 
 " make test commands execute using dispatch.vim
 " let test#strategy = "dispatch"
-let test#ruby#rspec#executable = './bin/rspec'
+let test#ruby#rspec#executable = 'bundle exec rspec'
 
 
 let g:rails_projections = {
@@ -347,6 +360,12 @@ autocmd BufWritePre *.js,*.jsx Prettier
 
 " STANDARD RUBY
 command! StandardRubyFix cexpr system('standardrb --fix .')
+
+" OMNISHARP:
+
+" Use the stdio version of OmniSharp-roslyn:
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_selector_ui = 'fzf' " Use fzf.vim
 
 " Project vimrc support
 if filereadable('.local.vim')

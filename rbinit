@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+echo "init rbenv"
+eval "$(rbenv init -)"
+
+echo "init yarn"
+export PATH="$PATH:`yarn global bin`"
+
+echo "init yarn"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+echo "init jin"
+eval "$(/Users/u0157541/code/jin/bin/jin init -)"
