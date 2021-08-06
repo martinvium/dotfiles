@@ -51,7 +51,7 @@ source ~/.secrets
 # Applications
 
 # Load Rbenv
-# eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 # I've installed zsh installed through Homebrew, so I add these
 # lines to make sure tab completion is properly configured
@@ -65,7 +65,7 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
 [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ] && source /usr/local/opt/fzf/shell/key-bindings.zsh
 
 # Yarn package manager (js)
-# export PATH="$PATH:`yarn global bin`"
+export PATH="$PATH:`yarn global bin`"
 
 # GCloud
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
@@ -79,9 +79,10 @@ export LC_CTYPE="en_US.UTF-8"
 export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
 # Oracle instantclient x64
-export OCI_DIR="/usr/local/oracle/instantclient_11_2"
-export SQLPATH="/usr/local/oracle/instantclient_11_2"
-export TNS_ADMIN="/usr/local/oracle/network/admin"
+# export OCI_DIR="/usr/local/oracle/instantclient_11_2"
+# export SQLPATH="/usr/local/oracle/instantclient_11_2"
+# export TNS_ADMIN="/usr/local/oracle/network/admin"
+export OCI_DIR=$(brew --prefix)/lib
 
 
 # Editors
@@ -96,4 +97,5 @@ source ~/.zsh_plugins.sh
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+eval "$(direnv hook zsh)"

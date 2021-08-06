@@ -41,8 +41,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'prettier/vim-prettier'
   " Tests & Auto-start OmniSharp server
-  Plug 'tpope/vim-dispatch'
-  Plug 'OmniSharp/omnisharp-vim'
+  " Plug 'tpope/vim-dispatch'
+  " Plug 'OmniSharp/omnisharp-vim'
   " Generic test helper
   Plug 'janko-m/vim-test'
   " Docker syntax highlighting
@@ -71,6 +71,7 @@ augroup vimrcEx
   autocmd FileType ruby set iskeyword=@,48-57,_,192-255,?
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
+  autocmd FileType *.cs set sw=4 sts=4 et
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
@@ -261,8 +262,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " VIM TESTING:
 
-" make test commands execute using dispatch.vim
-" let test#strategy = "dispatch"
 let test#ruby#rspec#executable = 'bundle exec rspec'
 
 
@@ -288,6 +287,8 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 " ZFZ SETTINGS:
 set rtp+=/usr/local/opt/fzf
+let g:fzf_layout = { 'down': '40%' }
+let g:fzf_preview_window = []
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <leader>. :BTags<cr>
@@ -297,13 +298,15 @@ nnoremap <leader>, :Tags<cr>
 " TAG JUMPING:
 
 " Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules' --exclude='*.erb' --exclude='*.js' --exclude='*.jsx' --exclude='vendor' --exclude='*.html' .
+command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules'
+      \ --exclude='*.erb' --exclude='*.js' --exclude='*.jsx' --exclude='vendor'
+      \ --exclude='*.html' --exclude='Library' .
 
 
 " FILE BROWSING:
 
 let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
+" let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
@@ -356,6 +359,7 @@ au BufNewFile *_spec.rb r ~/.vim/skeleton.spec
 " PRETTIER:
 
 let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_path = "./node_modules/prettier"
 autocmd BufWritePre *.js,*.jsx Prettier
 
 " STANDARD RUBY
@@ -364,8 +368,8 @@ command! StandardRubyFix cexpr system('standardrb --fix .')
 " OMNISHARP:
 
 " Use the stdio version of OmniSharp-roslyn:
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_selector_ui = 'fzf' " Use fzf.vim
+" let g:OmniSharp_server_stdio = 1
+" let g:OmniSharp_selector_ui = 'fzf' " Use fzf.vim
 
 " Project vimrc support
 if filereadable('.local.vim')
