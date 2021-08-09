@@ -161,7 +161,7 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 " Makes macros execute faster
 set lazyredraw
 
-set shell=/usr/local/bin/zsh
+set shell=/bin/zsh
 
 "" Wild settings
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
