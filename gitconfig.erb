@@ -1,5 +1,5 @@
 [core]
-	excludesfile = <%= ENV['HOME'] %>/.gitignore_global
+  excludesfile = <%= ENV["HOME"] %>/.gitignore_global
 	editor = vim
 [user]
   name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
@@ -7,8 +7,17 @@
 [push]
 	default = current
 [alias]
+  co = checkout
 	uncommit = reset --soft HEAD^
 	pr = pull-request
 	up = pull --rebase --autostash
-[commit]
-	template = <%= ENV['HOME'] %>/.stCommitMsg
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ; last = branch --sort=-committerdate
+  last = branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'
+  amend = commit --amend
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
