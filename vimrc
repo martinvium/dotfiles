@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rails'
   " Adds end, after if, def etc.
   Plug 'tpope/vim-endwise'
+  " Using vim-plug
+  Plug 'elixir-editors/vim-elixir'
   " Git wrapper
   Plug 'tpope/vim-fugitive'
   " Plug 'tpope/vim-rhubarb'
