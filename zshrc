@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # I prefer not to have autocompletion be case-insensitive, which is the default
 export CASE_SENSITIVE="true"
@@ -67,11 +67,6 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
 # Yarn package manager (js)
 export PATH="$PATH:`yarn global bin`"
 
-# GCloud
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-
-
 # Probably oracle?
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -91,11 +86,21 @@ export EDITOR=vim
 
 # Project specific
 export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
+export PERSISTENT_CACHE=1
 
 # Load plugins
 source ~/.zsh_plugins.sh
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 
+# Postgresql
+export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 eval "$(direnv hook zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/u0157541/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

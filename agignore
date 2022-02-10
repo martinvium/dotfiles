@@ -4,6 +4,7 @@ images/
 tmp/
 vendor/
 fonts/
+node_modules/
 *.sql
 *.tags*
 *.gemtags*
@@ -11,7 +12,6 @@ fonts/
 *.tsv
 *.tmp*
 *.old
-*.json
 *.plist
 *.pdf
 *.jpg

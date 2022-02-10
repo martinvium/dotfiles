@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-rsi'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   " Plug 'thinca/vim-textobj-between'
@@ -83,6 +84,9 @@ augroup vimrcEx
   autocmd FileType go map <buffer> :A :GoAlternate
   autocmd FileType go nnoremap <leader>T :GoTest<cr>
   autocmd FileType go nnoremap <leader>t :GoTestFunc<cr>
+
+  autocmd FileType elixir setlocal formatprg=mix\ format\ -
+  autocmd FileType elixir nnoremap <leader>r :!mix format<cr>
 
   autocmd FileType mail setlocal fo+=aw
 augroup END
@@ -314,6 +318,8 @@ let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_winsize = 40
 let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
+let g:netrw_browsex_viewer="open -a Google \Chrome"
+" nnoremap <silent> gx :execute 'silent! !open ' . shellescape(expand('<cWORD>'), 1)<cr>
 
 "}}}
 
@@ -362,7 +368,7 @@ au BufNewFile *_spec.rb r ~/.vim/skeleton.spec
 
 let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_path = "./node_modules/prettier"
-autocmd BufWritePre *.js,*.jsx Prettier
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
 
 " STANDARD RUBY
 command! StandardRubyFix cexpr system('standardrb --fix .')
