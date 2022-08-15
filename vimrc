@@ -42,7 +42,7 @@ call plug#begin('~/.vim/plugged')
   " Javascript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'prettier/vim-prettier'
+  " Plug 'prettier/vim-prettier'
   " Tests & Auto-start OmniSharp server
   " Plug 'tpope/vim-dispatch'
   " Plug 'OmniSharp/omnisharp-vim'
@@ -50,6 +50,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'janko-m/vim-test'
   " Docker syntax highlighting
   Plug 'ekalinin/Dockerfile.vim'
+  " Lint
+  " Plug 'w0rp/ale'
+  Plug 'ngmy/vim-rubocop'
 call plug#end()
 
 "{{{ General Settings
@@ -364,11 +367,19 @@ highlight LineNr guifg=#777777
 
 au BufNewFile *_spec.rb r ~/.vim/skeleton.spec
 
-" PRETTIER:
+" " PRETTIER:
 
 let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_path = "./node_modules/prettier"
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
+
+" LINT:
+" let g:ale_fix_on_save = 1
+" only explicitly enabled linters
+" let g:ale_linters_explicit = 1
+" autocmd BufWritePost *.rb !bundle exec rubocop -a --config=./.rubocop_config.yml %
+" autocmd BufWritePost *.rb :RuboCop -a
+" let g:vimrubocop_rubocop_cmd = "rubocop-daemon exec --"
 
 " STANDARD RUBY
 command! StandardRubyFix cexpr system('standardrb --fix .')

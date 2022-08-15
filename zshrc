@@ -85,12 +85,12 @@ export BUNDLER_EDITOR=vim
 export EDITOR=vim
 
 # Project specific
-export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
+# export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
 export PERSISTENT_CACHE=1
 
 # Load plugins
 source ~/.zsh_plugins.sh
-export PATH="/usr/local/opt/node@10/bin:$PATH"
+# export PATH="/Users/u0157541/.nvm/versions/node/v16.14.2/bin:$PATH"
 
 # Postgresql
 export PATH="/usr/local/opt/postgresql@13/bin:$PATH"

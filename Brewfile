@@ -15,3 +15,5 @@ brew 'the_silver_searcher'
 # brew 'govendor'
 brew 'rbenv'
 brew 'readline'
+
+# brew 'kubernetes-cli'
