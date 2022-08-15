@@ -1,0 +1,26 @@
+[core]
+  excludesfile = ~/.gitignore_global
+	editor = vim
+[user]
+  name = "Martin Vium"
+	email = martin@codefuss.com
+[push]
+	default = current
+[alias]
+  co = checkout
+	uncommit = reset --soft HEAD^
+	pr = pull-request
+	up = pull --rebase --autostash
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  graph = log --graph --pretty=format:'%C(auto)%h %C(green)%ad %C(yellow )%G?%Creset %C(blue bold)%an%C(auto)%d %Creset%s' --date=short
+  rim = !EDITOR=cat git rebase --interactive --autosquash master
+  last = branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'
+  amend = commit --amend
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[init]
+	defaultBranch = master
