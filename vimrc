@@ -95,7 +95,7 @@ augroup vimrcEx
 augroup END
 
 
-color Molokai
+color molokai
 
 set relativenumber    " Show line numbers
 set number            " Show line numbers

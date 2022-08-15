@@ -104,3 +104,6 @@ if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Iterm2 native shell integration?
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
