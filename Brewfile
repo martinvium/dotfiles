@@ -17,3 +17,5 @@ brew 'rbenv'
 brew 'readline'
 
 # brew 'kubernetes-cli'
+#
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags

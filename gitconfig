@@ -24,3 +24,5 @@
 	tool = vimdiff
 [init]
 	defaultBranch = master
+[hub]
+	protocol = ssh

@@ -42,7 +42,7 @@ call plug#begin('~/.vim/plugged')
   " Javascript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  " Plug 'prettier/vim-prettier'
+  Plug 'prettier/vim-prettier'
   " Tests & Auto-start OmniSharp server
   " Plug 'tpope/vim-dispatch'
   " Plug 'OmniSharp/omnisharp-vim'
@@ -216,12 +216,16 @@ nnoremap <leader>A :AgFromSearch<cr>
 nnoremap <leader>b :b#<cr>
 
 " Run rubocop fix on file
-nnoremap <leader>w :!rubocop -a --config=./.rubocop_config.yml % <bar> write<cr>
+nnoremap <leader>r :!./bin/rubocop -a --config=./.rubocop_config.yml %<cr>
 
-" Run rubocop fix on file
-nnoremap <leader>r :!rubocop -a --config=./.rubocop_config.yml %<cr>
-" nnoremap <leader>r :!rubocop --safe-auto-correct %<cr>
-nnoremap <leader>R :!rubocop --parallel<cr>
+" Run rubocop on current folder
+nnoremap <leader>R :!./bin/rubocop --parallel<cr>
+
+" Run rubocop using plugin
+" let g:vimrubocop_keymap = 0
+" let g:vimrubocop_rubocop_cmd = './bin/rubocop '
+" let g:vimrubocop_extra_args = '-a'
+" nnoremap <leader>r :RuboCop<cr>
 
 " Run current rspec
 nnoremap <leader>t :TestFile<cr>
@@ -295,7 +299,7 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 
 " ZFZ SETTINGS:
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = []
 nnoremap <silent> <C-p> :Files<CR>
@@ -309,7 +313,10 @@ nnoremap <leader>, :Tags<cr>
 " Create the `tags` file (may need to install ctags first)
 command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules'
       \ --exclude='*.erb' --exclude='*.js' --exclude='*.jsx' --exclude='vendor'
-      \ --exclude='*.html' --exclude='Library' .
+      \ --exclude='*.html' --exclude='Library' --exclude='*.css'
+      \ --exclude='*.scss' --exclude='*.xml' --exclude='*.ts'
+      \ --exclude='spec' --exclude='*.json' --exclude='*.xsl'
+      \ --exclude='*.yaml' --exclude='*.md' .
 
 
 " FILE BROWSING:

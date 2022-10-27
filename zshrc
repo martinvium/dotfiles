@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:$PATH"
+export PATH="$(brew --prefix)/bin:$PATH"
 
 # I prefer not to have autocompletion be case-insensitive, which is the default
 export CASE_SENSITIVE="true"
@@ -61,8 +61,8 @@ fi
 
 # FZF Search
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
-[ -f /usr/local/opt/fzf/shell/completion.zsh ] && source /usr/local/opt/fzf/shell/completion.zsh
-[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ] && source /usr/local/opt/fzf/shell/key-bindings.zsh
+[ -f $(brew --prefix)/opt/fzf/shell/completion.zsh ] && source $(brew --prefix)/opt/fzf/shell/completion.zsh
+[ -f $(brew --prefix)/opt/fzf/shell/key-bindings.zsh ] && source $(brew --prefix)/opt/fzf/shell/key-bindings.zsh
 
 # Yarn package manager (js)
 export PATH="$PATH:`yarn global bin`"
@@ -74,9 +74,9 @@ export LC_CTYPE="en_US.UTF-8"
 export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
 # Oracle instantclient x64
-# export OCI_DIR="/usr/local/oracle/instantclient_11_2"
-# export SQLPATH="/usr/local/oracle/instantclient_11_2"
-# export TNS_ADMIN="/usr/local/oracle/network/admin"
+# export OCI_DIR="$(brew --prefix)/oracle/instantclient_11_2"
+# export SQLPATH="$(brew --prefix)/oracle/instantclient_11_2"
+# export TNS_ADMIN="$(brew --prefix)/oracle/network/admin"
 export OCI_DIR=$(brew --prefix)/lib
 
 
@@ -85,25 +85,29 @@ export BUNDLER_EDITOR=vim
 export EDITOR=vim
 
 # Project specific
-# export DISABLE_WEBPACK_CHECK_YARN_INTEGRITY=true
 export PERSISTENT_CACHE=1
 
 # Load plugins
-source ~/.zsh_plugins.sh
-# export PATH="/Users/u0157541/.nvm/versions/node/v16.14.2/bin:$PATH"
+source <(antibody init)
 
 # Postgresql
-export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+export PATH="$(brew --prefix)/opt/postgresql@13/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 eval "$(direnv hook zsh)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/u0157541/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/u0157541/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Iterm2 native shell integration?
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(/Users/u0157541/code/jin/bin/jin init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/u0157541/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/u0157541/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/u0157541/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/u0157541/google-cloud-sdk/completion.zsh.inc'; fi
+
+# aliases
+alias ports="lsof -nP -iTCP -sTCP:LISTEN"
