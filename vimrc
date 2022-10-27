@@ -50,9 +50,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'janko-m/vim-test'
   " Docker syntax highlighting
   Plug 'ekalinin/Dockerfile.vim'
-  " Lint
-  " Plug 'w0rp/ale'
-  Plug 'ngmy/vim-rubocop'
 call plug#end()
 
 "{{{ General Settings
@@ -220,12 +217,6 @@ nnoremap <leader>r :!./bin/rubocop -a --config=./.rubocop_config.yml %<cr>
 
 " Run rubocop on current folder
 nnoremap <leader>R :!./bin/rubocop --parallel<cr>
-
-" Run rubocop using plugin
-" let g:vimrubocop_keymap = 0
-" let g:vimrubocop_rubocop_cmd = './bin/rubocop '
-" let g:vimrubocop_extra_args = '-a'
-" nnoremap <leader>r :RuboCop<cr>
 
 " Run current rspec
 nnoremap <leader>t :TestFile<cr>
