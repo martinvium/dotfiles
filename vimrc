@@ -213,7 +213,11 @@ nnoremap <leader>A :AgFromSearch<cr>
 nnoremap <leader>b :b#<cr>
 
 " Run rubocop fix on file
-nnoremap <leader>r :!./bin/rubocop -a --config=./.rubocop_config.yml %<cr>
+if filereadable('./.rubocop_config.yml')
+  nnoremap <leader>r :!./bin/rubocop -a --config=./.rubocop_config.yml %<cr>
+else
+  nnoremap <leader>r :!./bin/rubocop -a %<cr>
+endif
 
 " Run rubocop on current folder
 nnoremap <leader>R :!./bin/rubocop --parallel<cr>
