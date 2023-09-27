@@ -53,7 +53,9 @@ call plug#begin('~/.vim/plugged')
   " Docker syntax highlighting
   Plug 'ekalinin/Dockerfile.vim'
   " Use open with gx
+  Plug 'nvim-lua/plenary.nvim'
   Plug 'chrishrb/gx.nvim'
+  Plug 'ruifm/gitlinker.nvim'
 call plug#end()
 
 "{{{ General Settings
@@ -196,6 +198,9 @@ augroup CursorLine
 augroup END
 "}}}
 
+" Disable mouse support
+set mouse=
+
 "{{{ - Bundle Settings
 
 
@@ -253,7 +258,8 @@ nnoremap <leader>j :%!jq .<CR>
 nnoremap <leader>gb :Git blame<cr>
 
 " copy current filename into clipboard
-nnoremap <leader>fc :let @" = expand("%")<CR>
+nnoremap <leader>fc :let @+=expand('%')<cr>
+
 
 " Move lines up or down
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
@@ -293,7 +299,8 @@ command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules'
       \ --exclude='*.html' --exclude='Library' --exclude='*.css'
       \ --exclude='*.scss' --exclude='*.xml' --exclude='*.ts'
       \ --exclude='spec' --exclude='*.json' --exclude='*.xsl'
-      \ --exclude='*.yaml' --exclude='*.md' .
+      \ --exclude='*.yaml' --exclude='*.md' --exclude='.yarn'
+      \ --exclude='.pnpm-store' .
 
 
 " FILE BROWSING:
@@ -383,6 +390,12 @@ lua << EOF
       require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
     end)
 
+    -- Send file to terminal and run in rspec
+    vim.keymap.set("n", "<leader>Y", function()
+      local cmd = "KG_SITE=pro-se bundle exec rspec " .. vim.fn.expand("%:.")
+      require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
+    end)
+
     -- Send line to terminal and run in rspec
     vim.keymap.set("n", "<leader>t", function()
       local cmd = "bundle exec rspec " .. vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
@@ -400,7 +413,12 @@ let g:rails_projections = {
       \   }
       \ }
 
-lua require("toggleterm").setup({ open_mapping="<leader>o",  start_in_insert=false, hide_numbers=false })
+lua << EOF
+  require("toggleterm").setup({ open_mapping="<leader>o",  start_in_insert=false, hide_numbers=false, direction = 'float' })
+  require("gx").setup()
+  require("gitlinker").setup()
+EOF
+
 
 " Project vimrc support
 if filereadable('.local.vim')

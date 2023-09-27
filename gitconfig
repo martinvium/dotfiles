@@ -1,6 +1,6 @@
 [core]
   excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
 [user]
   name = "Martin Vium"
 	email = martin@codefuss.com
@@ -16,6 +16,7 @@
   rim = !EDITOR=cat git rebase --interactive --autosquash master
   last = branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'
   amend = commit --amend
+  rc = rebase --continue
 [diff]
 	tool = vimdiff
 [difftool]
@@ -26,3 +27,8 @@
 	defaultBranch = master
 [hub]
 	protocol = ssh
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

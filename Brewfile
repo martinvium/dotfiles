@@ -9,6 +9,7 @@ brew 'vim', args: ['--with-lua']
 brew 'ctags'
 brew 'fzf'
 brew 'the_silver_searcher'
+brew 'jq'
 
 # Programming languages
 # brew 'go'

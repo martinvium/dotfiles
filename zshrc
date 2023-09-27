@@ -79,6 +79,18 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 # export TNS_ADMIN="$(brew --prefix)/oracle/network/admin"
 export OCI_DIR=$(brew --prefix)/lib
 
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+source /Users/$(whoami)/.pyenv/versions/$(python --version | cut -d' ' -f2)/bin/virtualenvwrapper.sh
 
 # Editors
 export BUNDLER_EDITOR=vim
@@ -101,13 +113,18 @@ eval "$(direnv hook zsh)"
 # Iterm2 native shell integration?
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval "$(/Users/u0157541/code/jin/bin/jin init -)"
+eval "$($HOME/code/jin/bin/jin init -)"
+eval "$($HOME/code/db-tonic/bin/init)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/u0157541/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/u0157541/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/u0157541/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/u0157541/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # aliases
 alias ports="lsof -nP -iTCP -sTCP:LISTEN"
+alias vim='nvim'
+alias y='pnpm'
+
+source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop

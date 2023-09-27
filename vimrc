@@ -242,7 +242,7 @@ noremap <leader>c "+
 " vnoremap <leader>c "+
 
 " Format JSON
-nnoremap <leader>j :%!python -m json.tool
+nnoremap <leader>j :%!jq .<CR>
 
 " Copy visual selection into clipholder
 " NOTE: incompatible with clipholder shortcut because of viwp
