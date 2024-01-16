@@ -172,6 +172,10 @@ nnoremap k gk
 " Double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
+" Next & Previous tag
+nnoremap >t :tnext<cr>
+nnoremap <t :tprevious<cr>
+
 " Makes macros execute faster
 set lazyredraw
 
@@ -300,7 +304,7 @@ command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules'
       \ --exclude='*.scss' --exclude='*.xml' --exclude='*.ts'
       \ --exclude='spec' --exclude='*.json' --exclude='*.xsl'
       \ --exclude='*.yaml' --exclude='*.md' --exclude='.yarn'
-      \ --exclude='.pnpm-store' .
+      \ --exclude='.pnpm-store' --exclude='core/data/snapshots' .
 
 
 " FILE BROWSING:

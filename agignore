@@ -8,8 +8,6 @@ node_modules/
 *.sql
 *.tags*
 *.gemtags*
-*.csv
-*.tsv
 *.tmp*
 *.old
 *.plist

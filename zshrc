@@ -50,8 +50,14 @@ source ~/.secrets
 
 # Applications
 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Load Rbenv
 eval "$(rbenv init -)"
+eval "$(mise activate zsh)"
+
 
 # I've installed zsh installed through Homebrew, so I add these
 # lines to make sure tab completion is properly configured
@@ -103,11 +109,8 @@ export PERSISTENT_CACHE=1
 source <(antibody init)
 
 # Postgresql
-export PATH="$(brew --prefix)/opt/postgresql@13/bin:$PATH"
+export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 eval "$(direnv hook zsh)"
 
 # Iterm2 native shell integration?
