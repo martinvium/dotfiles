@@ -26,7 +26,7 @@ call plug#begin('~/.vim/plugged')
   " JSON Syntax
   Plug 'elzr/vim-json'
   " Fuzzy searh
-  Plug 'junegunn/fzf.vim'
+  " Plug 'junegunn/fzf.vim'
   " indent guides
   Plug 'nathanaelkane/vim-indent-guides'
   " More colorschemes
@@ -56,6 +56,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'chrishrb/gx.nvim'
   Plug 'ruifm/gitlinker.nvim'
+
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
+  Plug 'sindrets/diffview.nvim'
+  " Plug 'NeogitOrg/neogit'
 call plug#end()
 
 "{{{ General Settings
@@ -293,13 +298,17 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 
 " ZFZ SETTINGS:
-set rtp+=/opt/homebrew/opt/fzf
-let g:fzf_layout = { 'down': '40%' }
-let g:fzf_preview_window = []
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <leader>. :BTags<cr>
-nnoremap <leader>, :Tags<cr>
+" set rtp+=/opt/homebrew/opt/fzf
+" let g:fzf_layout = { 'down': '40%' }
+" let g:fzf_preview_window = []
+" nnoremap <silent> <C-p> :Files<CR>
+" nnoremap <silent> <C-b> :Buffers<CR>
+" nnoremap <leader>. :BTags<cr>
+" nnoremap <leader>, :Tags<cr>
+
+" TELESCOPE:
+nnoremap <silent> <C-p> <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-b> <cmd>Telescope live_grep<cr>
 
 
 " TAG JUMPING:
@@ -412,6 +421,9 @@ lua << EOF
       local cmd = "bundle exec rspec " .. vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
       require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
     end)
+
+    -- local neogit = require('neogit')
+    -- neogit.setup {}
 EOF
 
 
@@ -434,6 +446,7 @@ lua << EOF
     end
   })
   require("gitlinker").setup()
+  require('telescope').setup()
 EOF
 
 
