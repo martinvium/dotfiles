@@ -81,7 +81,13 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
   " autocmd FileType python nnoremap <leader>t :term python3 %<cr>
-  autocmd FileType python nnoremap <leader>t :TermExec cmd="clear; python3 %" go_back=0 size=25<cr>
+  " autocmd FileType python nnoremap <leader>t :TermExec cmd="clear; python3 %" go_back=0 size=25<cr>
+  " autocmd FileType python nnoremap <leader>t :TermExec cmd="clear; python3 %" go_back=0 size=25<cr>
+  autocmd FileType python nnoremap <leader>t :!poetry run python -m unittest %<cr>
+  " autocmd FileType python nnoremap <leader>T :!poetry run python -m unittest tests/popper_embeddings<cr>
+  autocmd FileType python nnoremap <leader>r :!poetry run black %<cr>
+  autocmd FileType python nnoremap <leader>R :!poetry run black %:h<cr>
+
   autocmd FileType *.cs set sw=4 sts=4 et
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
@@ -175,6 +181,7 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 " Next & Previous tag
 nnoremap >t :tnext<cr>
 nnoremap <t :tprevious<cr>
+nnoremap <tab> za
 
 " Makes macros execute faster
 set lazyredraw
@@ -221,8 +228,8 @@ endif
 " CUSTOM LEADERS AND SHORTCUTS:
 
 " Silver searcher
-nnoremap <leader>a :Ag! -Q<space>
-nnoremap <leader>A :AgFromSearch<cr>
+nnoremap <leader>a :Ag! -Q --hidden<space>
+nnoremap <leader>A :AgFromSearch --hidden<cr>
 
 " Go back to last used buffer
 nnoremap <leader>b :b#<cr>
@@ -263,7 +270,7 @@ nnoremap <leader>gb :Git blame<cr>
 
 " copy current filename into clipboard
 nnoremap <leader>fc :let @+=expand('%')<cr>
-
+nnoremap <silent> <leader>gf :e <cfile><cr>
 
 " Move lines up or down
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
@@ -419,7 +426,13 @@ let g:rails_projections = {
 
 lua << EOF
   require("toggleterm").setup({ open_mapping="<leader>o",  start_in_insert=false, hide_numbers=false, direction = 'float' })
-  require("gx").setup()
+  require("gx").setup({
+    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+    cmd = { "Browse" },
+    init = function ()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end
+  })
   require("gitlinker").setup()
 EOF
 
