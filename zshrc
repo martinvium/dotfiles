@@ -65,13 +65,11 @@ if [ -e $(which brew &> /dev/null && brew --prefix)/etc/zsh_completion ]; then
   source $(brew --prefix)/etc/zsh_completion
 fi
 
+eval "$(fzf --zsh)"
 # FZF Search
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore .hg -g ''"
 [ -f $(brew --prefix)/opt/fzf/shell/completion.zsh ] && source $(brew --prefix)/opt/fzf/shell/completion.zsh
 [ -f $(brew --prefix)/opt/fzf/shell/key-bindings.zsh ] && source $(brew --prefix)/opt/fzf/shell/key-bindings.zsh
-
-# Yarn package manager (js)
-export PATH="$PATH:`yarn global bin`"
 
 # Probably oracle?
 export LANG="en_US.UTF-8"
@@ -99,17 +97,20 @@ export PROJECT_HOME=$HOME/Projects
 source /Users/$(whoami)/.pyenv/versions/$(python --version | cut -d' ' -f2)/bin/virtualenvwrapper.sh
 
 # Editors
-export BUNDLER_EDITOR=vim
-export EDITOR=vim
+export BUNDLER_EDITOR=nvim
+export EDITOR=nvim
 
 # Project specific
 export PERSISTENT_CACHE=1
+
+# k9s
+export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 
 # Load plugins
 source <(antibody init)
 
 # Postgresql
-export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 
@@ -129,5 +130,11 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 alias ports="lsof -nP -iTCP -sTCP:LISTEN"
 alias vim='nvim'
 alias y='pnpm'
+
+# vault
+export VAULT_ADDR=https://vault.karnov-services.com
+
+# poetry
+export PATH="$HOME/.local/bin:$PATH"
 
 source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop

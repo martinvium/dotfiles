@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rsi'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
-  " Plug 'thinca/vim-textobj-between'
   " Vim Ruby
   Plug 'vim-ruby/vim-ruby'
   " Vim Rails
@@ -43,11 +42,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'prettier/vim-prettier'
-  " Tests & Auto-start OmniSharp server
-  " Plug 'tpope/vim-dispatch'
-  " Plug 'OmniSharp/omnisharp-vim'
-  " Generic test helper
-  " Plug 'janko-m/vim-test'
   " Toggle test output and other terminal commands
   Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
   " Docker syntax highlighting
@@ -83,8 +77,7 @@ augroup vimrcEx
   " autocmd FileType python nnoremap <leader>t :term python3 %<cr>
   " autocmd FileType python nnoremap <leader>t :TermExec cmd="clear; python3 %" go_back=0 size=25<cr>
   " autocmd FileType python nnoremap <leader>t :TermExec cmd="clear; python3 %" go_back=0 size=25<cr>
-  autocmd FileType python nnoremap <leader>t :!poetry run python -m unittest %<cr>
-  " autocmd FileType python nnoremap <leader>T :!poetry run python -m unittest tests/popper_embeddings<cr>
+  autocmd FileType python nnoremap <leader>T :!poetry run python -m unittest discover<cr>
   autocmd FileType python nnoremap <leader>r :!poetry run black %<cr>
   autocmd FileType python nnoremap <leader>R :!poetry run black %:h<cr>
 
@@ -311,7 +304,9 @@ command! MakeTags !ctags -R --exclude='.git' --exclude='node_modules'
       \ --exclude='*.scss' --exclude='*.xml' --exclude='*.ts'
       \ --exclude='spec' --exclude='*.json' --exclude='*.xsl'
       \ --exclude='*.yaml' --exclude='*.md' --exclude='.yarn'
-      \ --exclude='.pnpm-store' --exclude='core/data/snapshots' .
+      \ --exclude='.pnpm-store' --exclude='core/data/snapshots'
+      \ --exclude='public/vite-test' --exclude='public/vite-dev'
+      \ --exclude='.venv' --exclude='shell' .
 
 
 " FILE BROWSING:
@@ -383,37 +378,8 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
 " autocmd BufWritePost *.rb :RuboCop -a
 " let g:vimrubocop_rubocop_cmd = "rubocop-daemon exec --"
 
-" STANDARD RUBY
+" STANDARD RUBY:
 command! StandardRubyFix cexpr system('standardrb --fix .')
-
-" OMNISHARP:
-
-" Use the stdio version of OmniSharp-roslyn:
-" let g:OmniSharp_server_stdio = 1
-" let g:OmniSharp_selector_ui = 'fzf' " Use fzf.vim
-
-" LUA
-
-lua << EOF
-    -- Send file to terminal and run in rspec
-    vim.keymap.set("n", "<leader>T", function()
-      local cmd = "bundle exec rspec " .. vim.fn.expand("%:.")
-      require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
-    end)
-
-    -- Send file to terminal and run in rspec
-    vim.keymap.set("n", "<leader>Y", function()
-      local cmd = "KG_SITE=pro-se bundle exec rspec " .. vim.fn.expand("%:.")
-      require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
-    end)
-
-    -- Send line to terminal and run in rspec
-    vim.keymap.set("n", "<leader>t", function()
-      local cmd = "bundle exec rspec " .. vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
-      require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
-    end)
-EOF
-
 
 let g:rails_projections = {
       \   "app/controllers/*_controller.rb": {
@@ -425,6 +391,24 @@ let g:rails_projections = {
       \ }
 
 lua << EOF
+  -- Send file to terminal and run in rspec
+  vim.keymap.set("n", "<leader>T", function()
+    local cmd = "bundle exec rspec " .. vim.fn.expand("%:.")
+    require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
+  end)
+
+  -- Send file to terminal and run in rspec
+  vim.keymap.set("n", "<leader>Y", function()
+    local cmd = "KG_SITE=pro-se bundle exec rspec " .. vim.fn.expand("%:.")
+    require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
+  end)
+
+  -- Send line to terminal and run in rspec
+  vim.keymap.set("n", "<leader>t", function()
+    local cmd = "bundle exec rspec " .. vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
+    require("toggleterm").exec_command("cmd='clear; " .. cmd .. "' go_back=0 size=25")
+  end)
+
   require("toggleterm").setup({ open_mapping="<leader>o",  start_in_insert=false, hide_numbers=false, direction = 'float' })
   require("gx").setup({
     keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },

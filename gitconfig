@@ -8,7 +8,8 @@
 	default = current
 [alias]
   co = checkout
-	uncommit = reset --soft HEAD^
+  ; co = checkout $(git branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)' | fzf)
+  uncommit = reset --soft HEAD^
 	pr = pull-request
 	up = pull --rebase --autostash
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
