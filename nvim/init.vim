@@ -390,6 +390,11 @@ let g:rails_projections = {
       \   }
       \ }
 
+" GX:
+let g:netrw_nogx = 1
+nmap gx :Browse<CR>
+xmap gx :Browse<CR>
+
 lua << EOF
   -- Send file to terminal and run in rspec
   vim.keymap.set("n", "<leader>T", function()
@@ -410,13 +415,7 @@ lua << EOF
   end)
 
   require("toggleterm").setup({ open_mapping="<leader>o",  start_in_insert=false, hide_numbers=false, direction = 'float' })
-  require("gx").setup({
-    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
-    cmd = { "Browse" },
-    init = function ()
-      vim.g.netrw_nogx = 1 -- disable netrw gx
-    end
-  })
+  require("gx").setup()
   require("gitlinker").setup()
 EOF
 
