@@ -83,6 +83,9 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 # export TNS_ADMIN="$(brew --prefix)/oracle/network/admin"
 export OCI_DIR=$(brew --prefix)/lib
 
+# HOME PATH
+export PATH="$HOME/bin:$PATH"
+
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -105,12 +108,16 @@ export PERSISTENT_CACHE=1
 
 # k9s
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 # Load plugins
 source <(antibody init)
 
 # Postgresql
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 
 eval "$(direnv hook zsh)"
 
